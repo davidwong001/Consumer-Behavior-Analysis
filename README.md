@@ -3,6 +3,7 @@
 USE [Project 2: Customer Personality]
 
 --#0a View for the entire database
+```sql
 SELECT [ID]
       ,[Year_Birth]
       ,[Generation]
@@ -34,10 +35,12 @@ SELECT [ID]
       ,[Z_Revenue]
       ,[Response]
 FROM [marketing_campaign]
+```
 
 --#0b Try and figure out the current date of the data.
 --I've decided to add the days since their last purchase to their first registration date. 
 --2014-10-04 is the most current date and hypothetically, I can add a buffer, but I will choose this date to make it simple. 
+```sql
 SELECT [ID]
       ,[Year_Birth]
       ,[Generation]
@@ -46,6 +49,7 @@ SELECT [ID]
       ,DATEADD(day, Recency, Dt_Customer) AS 'Current Date'
 FROM [marketing_campaign]
 ORDER BY 'Current Date' DESC
+```
 
 --#1 Insert a new column to classify customers into age/generation brackets. 
 
