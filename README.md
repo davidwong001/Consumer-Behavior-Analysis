@@ -80,7 +80,7 @@ SELECT ID
                             WHEN [Year_Birth] >= 1928 AND [Year_Birth] <= 1945 THEN 'Silent'
                             ELSE NULL
                             END
-       ,[Ag]e = 2023 - Year_Birth
+       ,[Age] = 2023 - Year_Birth
 --update marketing_campaign SET Generation = CASE WHEN Year_Birth >= 1997 AND Year_Birth <= 2012 THEN 'Gen Z'
                             WHEN [Year_Birth] >= 1981 AND [Year_Birth] <= 1996 THEN 'Millennials'
                             WHEN [Year_Birth] >= 1965 AND [Year_Birth] <= 1980 THEN 'Gen X'
