@@ -119,7 +119,7 @@ SELECT [Index] = 6
        ,AVG(NumWebVisitsMonth) AS 'AVG WebVisitsMonth'
 FROM [marketing_campaign]
 WHERE [Generation] IS NOT NULL
-ORDER BY [Index]
+ORDER BY [Index] 
 ```
 
 --#3 What kind of products do our customers like to make?
