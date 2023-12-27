@@ -60,6 +60,8 @@ SELECT [ID]
 FROM [marketing_campaign]
 ORDER BY 'Current Date' DESC
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/395dd498-b315-4e2a-8819-b2c1e0c90f8f)
+
 
 ### #1 Insert a new column to classify customers into age/generation brackets. 
 
@@ -131,6 +133,8 @@ FROM [marketing_campaign]
 WHERE [Generation] IS NOT NULL
 ORDER BY [Index] 
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/82d60aa0-a529-44b7-be21-a0ab197d86e2)
+
 
 ### #3 What kind of products do our customers like to make?
 --Used this query to get the average and sum of product purchases grouped by age generations and by the total.
