@@ -2,7 +2,7 @@
 
 USE [Project 2: Customer Personality]
 
-## --#0a View for the entire database
+## #0a View for the entire database
 ```sql
 SELECT [ID]
       ,[Year_Birth]
@@ -37,7 +37,7 @@ SELECT [ID]
 FROM [marketing_campaign]
 ```
 
---#0b Try and figure out the current date of the data.
+## #0b Try and figure out the current date of the data.
 --I've decided to add the days since their last purchase to their first registration date. 
 --2014-10-04 is the most current date and hypothetically, I can add a buffer, but I will choose this date to make it simple. 
 ```sql
@@ -51,7 +51,7 @@ FROM [marketing_campaign]
 ORDER BY 'Current Date' DESC
 ```
 
---#1 Insert a new column to classify customers into age/generation brackets. 
+## #1 Insert a new column to classify customers into age/generation brackets. 
 
 --Used this query to insert a blank column that I will use to fill out. 
 ALTER TABLE dbo.marketing_campaign
@@ -80,7 +80,7 @@ FROM [marketing_campaign]
 ORDER BY [Age]
 ```
 
---#2 Where do our customers like to make their purchases from?
+## #2 Where do our customers like to make their purchases from?
 --Our customers like to purchase in store the most. Followed up by web purchases and lastly catalog purchases.
 ```sql
 SELECT [Index] = CASE WHEN [Generation] = 'Gen Z' THEN 1
@@ -122,7 +122,7 @@ WHERE [Generation] IS NOT NULL
 ORDER BY [Index] 
 ```
 
---#3 What kind of products do our customers like to make?
+## #3 What kind of products do our customers like to make?
 --Used this query to get the average and sum of product purchases grouped by age generations and by the total.
 --We can see that in order from most ot least is Wine, Meat, Gold, Fish, Sweet, and Fruit.
 --Not sure what kind of store this is, but the distribution is interesting as you can purchase groceries, but also gold.
@@ -175,7 +175,7 @@ WHERE Generation IS NOT NULL
 ORDER BY [Index]
 ```
 
---#4 Which customers make the most purchases?
+## #4 Which customers make the most purchases?
 --Used this query to see that Gen X and Boomers make the most purchases at this store. Millennials are much smaller, but can definitely climb up as time goes on.
 --The Silent generation is the smallest segment however. 
 ```sql
@@ -213,7 +213,7 @@ GROUP BY [Generation]
 ORDER BY [Total] DESC
 ```
 
---#5 Which of our customer segments are more susceptible to making purchases that are on sale?
+## #5 Which of our customer segments are more susceptible to making purchases that are on sale?
 --Since we know that Gen X and Boomers make the most purchases, it does make sense why they would have the most deal purchases.
 --However, on average, they are about the same. Therefore, I believe the deals are working effectively for all customers.
 --A deeper level to analyze this further would be to use weights to make each generation the same size. 
@@ -234,7 +234,7 @@ GROUP BY [Generation]
 ORDER BY [Index]
 ```
 
---#6 Which of our customer segments are customers more susceptible to our marketing camapigns?
+## #6 Which of our customer segments are customers more susceptible to our marketing camapigns?
 --The Silent generation has the highest rate of accepting campaigns, but that is not reliable as there are only 24 of them.
 --Moving from highest to lowest, we have Millennials, Boomers, and Gen X. However, overall it is at 7.45%.
 --Diving into the campaigns, Campaign #2 was the worst one by far. 1, 3, 4, and 5 are pretty good at 6-7%. However, Campaign 6 really stood out with almost 15%.
@@ -268,7 +268,7 @@ FROM [marketing_campaign]
 WHERE [Generation] IS NOT NULL
 ```
 
---#7a How many customers have made a purchase wwithin 1 month, 3 months, and 3-12 months?
+## #7a How many customers have made a purchase wwithin 1 month, 3 months, and 3-12 months?
 --2014-10-04 is the current date
 
 --With this query, we can see that a large majority of customers have made a purchase in the past 3 months. This is great to see.
@@ -296,7 +296,7 @@ GROUP BY [Purchased]
 ORDER BY [Purchased]
 ```
 
---#7b Analyze the customers who have not made a purchase in over 3 months and provide some findings.
+## #7b Analyze the customers who have not made a purchase in over 3 months and provide some findings.
 
 --First, this is the entire list of customers who have not made purchases in 3-6 Months.
 --This list can be used to send them emails with promotions to get them back. 
@@ -403,7 +403,7 @@ WHERE [Purchased]  = '3-6 Months'
 GROUP BY [Seniority Bracket]
 ```
 
---#8 Analyze why the customers have made complaints. To preface this, we previously learned that complaints were not the main cause for customers to stop making purchases in 3 months. 
+## #8 Analyze why the customers have made complaints. To preface this, we previously learned that complaints were not the main cause for customers to stop making purchases in 3 months. 
 
 --First, I found that only 21 customers made complaints before. In general, it seems like customers are having a good time.
 ```sql
@@ -463,11 +463,3 @@ ORDER BY [Index]
 ```
 
 
-
-
---#X Create customer segments. Find the percentages of them
-    --Loyal customers
-    --Occasional customers
-    --One off customers
-
---Customer Demographics
