@@ -2,7 +2,7 @@
 
 USE [Project 2: Customer Personality]
 
---#0a View for the entire database
+## --#0a View for the entire database
 ```sql
 SELECT [ID]
       ,[Year_Birth]
