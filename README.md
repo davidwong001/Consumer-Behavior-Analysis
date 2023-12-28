@@ -47,9 +47,10 @@ SELECT [ID]
 FROM [marketing_campaign]
 ```
 
-### #0b Try and figure out the current date of the data.
+### #0b Figure out a hypothetical date of when the data was last recorded.
+- As I worked on this project, I found out I needed a specific date and because the dataset is a little limited on context, I had to find a way to get a hypothetical current date.
 - I've decided to add the days since their last purchase to their first registration date.
-- 2014-10-04 is the most current date and hypothetically, I can add a buffer, but I will choose this date to make it simple. 
+- 2014-10-04 is the most current date and I can technically add a buffer, but I chose this date for simplicity.
 ```sql
 SELECT [ID]
       ,[Year_Birth]
@@ -58,17 +59,16 @@ SELECT [ID]
       ,[Recency]
       ,DATEADD(day, Recency, Dt_Customer) AS 'Current Date'
 FROM [marketing_campaign]
-ORDER BY 'Current Date' DESC
+ORDER BY [Current Date] DESC
 ```
 ![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/395dd498-b315-4e2a-8819-b2c1e0c90f8f)
 
 ### #1 Insert a new column to classify customers into age/generation brackets. 
-
 - Used this query to insert a blank column that I will use to fill out. 
 ALTER TABLE dbo.marketing_campaign
 ADD Generation varchar(255)
 
-- Used this query to define the generation's brackets and insert them into the new column. There are 3 ID's with ages over 100, so I am going to omit them by leaving them as NULL.
+- Used this query to define the generation's brackets and inserted them into the new column. There are 3 ID's with ages over 100, and because the base size is so small, I just left them as NULL.
 ```sql
 SELECT ID
        ,[Year_Birth]
@@ -91,8 +91,8 @@ FROM [marketing_campaign]
 ORDER BY [Age]
 ```
 
-### #2 Where do our customers like to make their purchases from?
-- Our customers like to purchase in store the most. Followed up by web purchases and lastly catalog purchases.
+### #2 Where do customers like to make their purchases from?
+- Customers like to purchase in store the most. Followed up by web purchases and lastly catalog purchases.
 ```sql
 SELECT [Index] = CASE WHEN [Generation] = 'Gen Z' THEN 1
                       WHEN [Generation] = 'Millennials' THEN 2
@@ -135,11 +135,11 @@ ORDER BY [Index]
 ![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/82d60aa0-a529-44b7-be21-a0ab197d86e2)
 
 
-### #3 What kind of products do our customers like to make?
+### #3 What kind of products do customers like to make?
 - Used this query to get the average and sum of product purchases grouped by age generations and by the total.
-- We can see that in order from most ot least is Wine, Meat, Gold, Fish, Sweet, and Fruit.
+- We can see that in order from most to least is Wine, Meat, Gold, Fish, Sweet, and Fruit.
 - Not sure what kind of store this is, but the distribution is interesting as you can purchase groceries, but also gold.
-- My guess, it could be like a wholesale store like Costco or Sam's Club.
+- My guess, it could be similar to a wholesale store like Costco or Sam's Club.
 ```sql
 SELECT [Index] = CASE WHEN [Generation] = 'Gen Z' THEN 1
                       WHEN [Generation] = 'Millennials' THEN 2
@@ -189,9 +189,11 @@ ORDER BY [Index]
 ```
 ![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/ecd1dd29-5f07-40f5-a1e0-76597b2fb542)
 
-### #4 Which customers make the most purchases?
+### #4 Which customer group makes the most purchases?
 - Used this query to see that Gen X and Boomers make the most purchases at this store. Millennials are much smaller, but can definitely climb up as time goes on.
-- The Silent generation is the smallest segment however. 
+- However, the Silent generation is the smallest segment.
+- A minor flaw to this finding is that the base sizes for each generations are different. It currently lines up with the idea that the more people there are, the more sales there would be.
+- Reflecting on this, we can calculate an average of sales per customer for each generation, which would give us a more accurate conclusion.
 ```sql
 SELECT [Index] = CASE WHEN [Generation] = 'Gen Z' THEN 1
                       WHEN [Generation] = 'Millennials' THEN 2
@@ -228,7 +230,7 @@ ORDER BY [Total] DESC
 ```
 ![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/0b769107-04b5-40ed-ae92-4dba1bcbbad8)
 
-### #5 Which of our customer segments are more susceptible to making purchases that are on sale?
+### #5 Which customer segment is more susceptible to making purchases that are on sale?
 - Since we know that Gen X and Boomers make the most purchases, it does make sense why they would have the most deal purchases.
 - However, on average, they are about the same. Therefore, I believe the deals are working effectively for all customers.
 - A deeper level to analyze this further would be to use weights to make each generation the same size. 
@@ -250,7 +252,7 @@ ORDER BY [Index]
 ```
 ![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/53adce58-fdf8-448f-a20c-fb814fd90e96)
 
-### #6 Which of our customer segments are customers more susceptible to our marketing camapigns?
+### #6 Which customer segment is more susceptible to marketing camapigns?
 - The Silent generation has the highest rate of accepting campaigns, but that is not reliable as there are only 24 of them.
 - Moving from highest to lowest, we have Millennials, Boomers, and Gen X. However, overall it is at 7.45%.
 - Diving into the campaigns, Campaign #2 was the worst one by far. 1, 3, 4, and 5 are pretty good at 6-7%. However, Campaign 6 really stood out with almost 15%.
