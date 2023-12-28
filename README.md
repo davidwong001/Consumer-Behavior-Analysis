@@ -1,6 +1,6 @@
 # Consumer-Behavior-Analysis
 
-## 📚 Background About the Project and Data
+## 📚 Background
 
 The goal for this project was to only use SQL to write an analysis. I found this "Customer Personality" dataset from Kaggle, which was last updated 2 years ago. The data is somewhat limited, so I tried to do as much as possible.
 
