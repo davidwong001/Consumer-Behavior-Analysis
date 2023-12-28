@@ -7,8 +7,12 @@ The goal for this project was to only use SQL to write an analysis. I found this
 Dataset (Kaggle): [Link](https://www.kaggle.com/datasets/imakash3011/customer-personality-analysis)
 
 ## 💡 Highlights
-- Note: Analysis was written based on data on September 10, 2023. Reflecting on this, I should've used the last day of a quarter instead. 
-- Sale
+- From most to least purchases are Wine, Meat, Gold, Fish, Sweet, and Fruit.
+- Gen X and Boomers make the most purchases at this store. However, a caveat to this is that the base sizes for those two groups are the largest.
+- Gen X and Boomers make the most deal purchases, but that is also because they are the largest customer bases for this store. However, on average, all generations make about the same deal purchases at an average of 3
+- On average, customers accept marketing campaigns at 7.45%. A major finding is that campaign #2 is the weakest and campaign #6 is the strongest. Therefore, this store should create more campaigns like #6.
+- A large majority of customers have made purchases in the past 3 months. With the limited depth of this data, we unfortunately do not know why customers have not made purchases in over 3 months.
+- Boomers have made the most complaints so far, but it's not too far off of the other generations. A nice way to revisit this is to calculate the rate at which each generation makes complaints.
 
 ## 📄 SQL Code and Analysis
 
