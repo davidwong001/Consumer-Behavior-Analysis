@@ -187,6 +187,7 @@ FROM [marketing_campaign]
 WHERE Generation IS NOT NULL
 ORDER BY [Index]
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/ecd1dd29-5f07-40f5-a1e0-76597b2fb542)
 
 ### #4 Which customers make the most purchases?
 - Used this query to see that Gen X and Boomers make the most purchases at this store. Millennials are much smaller, but can definitely climb up as time goes on.
@@ -225,6 +226,7 @@ WHERE [Generation] IS NOT NULL
 GROUP BY [Generation]
 ORDER BY [Total] DESC
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/0b769107-04b5-40ed-ae92-4dba1bcbbad8)
 
 ### #5 Which of our customer segments are more susceptible to making purchases that are on sale?
 - Since we know that Gen X and Boomers make the most purchases, it does make sense why they would have the most deal purchases.
@@ -246,6 +248,7 @@ WHERE [NumDealsPurchases] > 1
 GROUP BY [Generation]
 ORDER BY [Index]
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/53adce58-fdf8-448f-a20c-fb814fd90e96)
 
 ### #6 Which of our customer segments are customers more susceptible to our marketing camapigns?
 - The Silent generation has the highest rate of accepting campaigns, but that is not reliable as there are only 24 of them.
@@ -280,6 +283,7 @@ SELECT [Generation] = '*Total/%*'
 FROM [marketing_campaign]
 WHERE [Generation] IS NOT NULL
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/636a56ae-aef9-4f0c-9d7a-7adeb48fa15c)
 
 ### #7a How many customers have made a purchase wwithin 1 month, 3 months, and 3-12 months?
 - 2014-10-04 is the current date
@@ -308,6 +312,7 @@ FROM (
 GROUP BY [Purchased]
 ORDER BY [Purchased]
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/39bf13c9-fae3-4041-8f26-7d7cfc394428)
 
 ### #7b Analyze the customers who have not made a purchase in over 3 months and provide some findings.
 
@@ -334,6 +339,7 @@ FROM (
      ) [marketing_campaign mod] 
 WHERE [Purchased]  = '3-6 Months'
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/17ea808f-f463-4065-9c5c-0e942bc2199c)
 
 - Used this query to find out that only 4 people made complaints, so I would say complaints is not the main factor for those who stopped making purchases. 
 ```sql
@@ -359,6 +365,7 @@ FROM (
 WHERE [Purchased]  = '3-6 Months'
 GROUP BY [Complain]
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/fb1b7634-1220-47e5-8849-d79908a2af5a)
 
 - Using this query, we can see the level of the customers' membership seniority, which is calculated by subtracting their last purchase date to their first registration date.
 - About half of the customers have been members for over a year, so that seems ok. 
@@ -383,6 +390,7 @@ FROM (
 WHERE [Purchased]  = '3-6 Months'
 ORDER BY [Seniority] DESC
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/115ff4cc-dda2-43c3-919c-f0f8cac86e24)
 
 - Using this query, we get a breakdown of the customers' membership seniority who's last purchase was 3-6 months ago.
 - Overall, there is not sufficient data to determine why customers have not made purchases in a long time.
@@ -415,6 +423,7 @@ FROM
 WHERE [Purchased]  = '3-6 Months'
 GROUP BY [Seniority Bracket]
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/83868996-6d66-45fc-8132-f3b161724070)
 
 ### #8 Analyze why the customers have made complaints. To preface this, we previously learned that complaints were not the main cause for customers to stop making purchases in 3 months. 
 
@@ -425,6 +434,7 @@ SELECT Complain
 FROM [marketing_campaign]
 GROUP BY Complain
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/3ce0551a-e06f-489f-8f0a-991c90ee4219)
 
 - Using this query we can see that on average, those who made complaints bought fewer items, but that is also because our base sizes are low.
 - We can also see that on average, they have the same location purchasing preferences. Therefore, where they make their purchase is less likely to affect their experience.
@@ -440,6 +450,8 @@ SELECT Complain
 FROM [marketing_campaign]
 GROUP BY Complain
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/8dc98cfd-5be8-4b14-a633-7adc44e8fa3d)
+
 ```sql
 SELECT Complain
        ,COUNT(*) AS 'Number of Customers'
@@ -454,7 +466,7 @@ SELECT Complain
 FROM [marketing_campaign]
 GROUP BY Complain
 ```
-
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/91e33606-6610-400f-8639-50028d5e4dba)
 
 - Using this query, we can see that Boomers have made the most complaints so far.
 - And unfortunately, with the limited data, it would be tough to figure out the reasons why for these complaints.
@@ -474,5 +486,6 @@ WHERE [Complain] = 1
 GROUP BY [Generation]
 ORDER BY [Index]
 ```
+![image](https://github.com/davidwong001/Consumer-Behavior-Analysis/assets/146798360/3838f875-3633-47c8-b130-540dd5e8d546)
 
 
